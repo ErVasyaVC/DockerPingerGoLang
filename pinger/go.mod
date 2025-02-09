@@ -1,4 +1,4 @@
-module docker-monitoring
+module pinger
 
 go 1.23.5
 
