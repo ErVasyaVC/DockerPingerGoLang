@@ -37,7 +37,7 @@ func pingContainers() {
 		}
 
 		pingTime := ping(ip, 80)
-		sendPingResult(ctr.ID, ip, pingTime)
+		sendPingResult(ip, pingTime)
 
 	}
 }
@@ -75,11 +75,11 @@ func getContainerIP(Client *client.Client, containerID string) string {
 	return containerInfo.NetworkSettings.IPAddress
 }
 
-func sendPingResult(containerID string, ip string, pingTime int) {
+func sendPingResult(ip string, pingTime int) {
 	result := PingResult{
-		ContainerID: containerID,
 		IPAddress:   ip,
 		PingTime:    pingTime,
 		LastSuccess: time.Now().Format(time.RFC3339),
 	}
+	fmt.Println(result.ContainerID, result.IPAddress, result.PingTime, result.LastSuccess)
 }
